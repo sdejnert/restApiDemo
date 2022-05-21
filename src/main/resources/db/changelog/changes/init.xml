@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="CentralaWeb" id="21">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="TABLES_VERSION"/>
+            </not>
+        </preConditions>
+        <sql><![CDATA[
+            CREATE TABLE TABLES_VERSION
+            (
+                MAJOR NUMBER(10) DEFAULT 0,
+                MINOR NUMBER(10) DEFAULT 0
+            )
+            ]]></sql>
+        <sql><![CDATA[
+            CREATE TABLE USERS
+            (
+                ID            NUMBER(10) NOT NULL,
+                LOGIN         VARCHAR2(400) NOT NULL,
+                REQUEST_COUNT NUMBER(10),
+                CONSTRAINT GIT_USERS_PK PRIMARY KEY (ID)
+            )
+            ]]></sql>
+        <sql><![CDATA[
+            CREATE SEQUENCE SEQ_USERS
+                START WITH 1
+                INCREMENT BY 1 NOMINVALUE
+                MAXVALUE 9999999999999999999999999999
+                NOCYCLE
+                NOORDER
+                CACHE 20
+            ]]></sql>
+
+        <sql><![CDATA[
+            UPDATE TABLES_VERSION
+            SET MAJOR = 1,
+                MINOR = 0
+            ]]></sql>
+    </changeSet>
+</databaseChangeLog>
+
