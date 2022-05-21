@@ -6,6 +6,7 @@ Api wykorzystuje:
 - Lombok,
 - Oracle 21c,
 - JWT
+
 Jak wyżej wspominałem, baza danych stoi na oracle 21c. Przed włączeniem api baza danych musi być gotowa. Odpalamy ją jako kontener w dockerze:  `docker run -dp 1521:1521 --name oracle_21 sdejnert/oracle`. Obraz bazy danych ma w sobie pliki inicjalizacyje, które tworzą użytkownika bazy danych: `restapi/restapi2022@XEPDB1`.
 
 Struktura tabel tworzona jest podczas pierwszego włączania api poprzez Liquibase.
