@@ -1,0 +1,41 @@
+##################################################################
+# BASIC SETUP
+##################################################################
+server:
+  port: 8070
+  servlet:
+    context-path: /restApiDemo
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    include-exception: true
+    include-binding-errors: always
+    include-message: always
+    include-stacktrace: always
+
+##################################################################
+# ADDITIONAL SETUP
+##################################################################
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@//localhost/XEPDB1
+    username: restapi
+    password: restapi2022
+    hikari:
+      maximum-pool-size: 20
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        format_sql: false
+    open-in-view: false
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
